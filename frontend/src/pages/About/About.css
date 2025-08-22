@@ -1,0 +1,30 @@
+/* src/pages/About.css */
+
+.about-page {
+  animation: fadeIn 1s ease-in-out;
+}
+
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 1.2s ease-in forwards;
+}
+
+.animate-zoom-in {
+  transform: scale(0.95);
+  opacity: 0;
+  animation: zoomIn 1s ease-in-out forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
