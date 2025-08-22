@@ -1,168 +1,77 @@
-/* Container */
-.container {
-  max-width: 1100px;
-}
-
-/* Title animation */
-@keyframes fadeDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-title {
-  animation: fadeDown 0.8s ease forwards;
-}
-
-/* Card animation */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-card {
-  animation: fadeInUp 0.8s ease forwards;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-  cursor: default;
-}
-
-.animate-card:hover {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  transform: translateY(-5px);
-}
-
-/* Image styling */
-/* .post-image {
-  height: 250px;
-  object-fit: cover;
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
-  transition: transform 0.3s ease;
-} */
-
-.animate-card:hover .post-image {
-  transform: scale(1.05);
-  transition: transform 0.2s ease;
-}
-
-/* Button styling */
-.btn-outline-danger,
-.btn-outline-secondary,
-.btn-outline-info {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.btn-outline-danger:hover {
-  background-color: #dc3545;
-  color: white;
-}
-
-.btn-outline-secondary:hover {
-  background-color: #6c757d;
-  color: white;
-}
-
-.btn-outline-info:hover {
-  background-color: #0dcaf0;
-  color: white;
-}
-
-/* Comment input section */
-.comment-input-section {
-  background-color: #f9f9f9;
-  border-radius: 0 0 0.25rem 0.25rem;
-}
-
-.send-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* Comment section */
-.comment-section {
-  background-color: #fff;
-  border-radius: 0 0 0.25rem 0.25rem;
-  margin-top: 1rem;
-  max-height: 250px;
-  overflow-y: auto;
-}
-
-.comment-item {
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-/* Comment author styling */
-.comment-author {
-  font-weight: 600;
-  color: #3f51b5;
-}
-
-/* Responsive tweaks */
-@media (max-width: 768px) {
-  .post-image {
-    height: 200px;
-  }
-}
-
-.post-card {
-  overflow: hidden;
-  border-radius: 0.25rem; /* Optional: keeps corners rounded */
-}
-
 .image-overlay-container {
   position: relative;
-  height: 250px; /* Fixed height for consistency */
+  height: 250px; /* fixed height for consistency */
   overflow: hidden;
+  border-radius: 0.25rem; /* same as card */
 }
 
-/* Ensure image fills container */
-.image-overlay-container img.post-image {
+.post-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.3s ease;
+  border-radius: 0.25rem;
+}
+
+.image-overlay-container:hover .post-image {
+  transform: scale(1.05);
 }
 
 .image-overlay {
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 15px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.3),
+    transparent
+  );
   color: white;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  border-radius: 0 0 0.25rem 0.25rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  padding: 1rem;
 }
 
 .overlay-title {
   font-size: 1.25rem;
-  font-weight: bold;
-  margin-bottom: 4px;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
 }
 
 .overlay-author {
   font-size: 0.9rem;
-  opacity: 0.9;
-  margin-bottom: 8px;
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
 }
 
-/* Responsive */
+.overlay-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.overlay-buttons .btn {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 0.3rem;
+  transition: background-color 0.3s ease;
+}
+
+.overlay-buttons .btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Responsive tweaks */
 @media (max-width: 768px) {
-  .image-overlay {
-    padding: 10px;
+  .image-overlay-container {
+    height: 200px;
   }
   .overlay-title {
     font-size: 1rem;
@@ -170,26 +79,4 @@
   .overlay-author {
     font-size: 0.8rem;
   }
-}
-
-.overlay-buttons {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.overlay-buttons .btn {
-  font-size: 0.75rem;
-  padding: 3px 10px;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
-}
-
-.overlay-buttons .btn:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  color: #fff;
-}
-
-/* Optional: remove card-footer spacing if unused */
-.card-footer {
-  display: none;
 }

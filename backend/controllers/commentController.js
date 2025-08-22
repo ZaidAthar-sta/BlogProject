@@ -51,26 +51,16 @@ const getComments = async (req, res) => {
   }
 };
 
-const getCommentCount = async (req, res) => {
+
+const getCommentsCount = async (req, res) => {
   try {
-    console.log("→ Fetching posts for comment counts");
-
-    const posts = await postModel.find({}, "_id");
-    const counts = await Promise.all(
-      posts.map(async ({ _id }) => ({
-        postId: _id.toString(),
-        count: await commentModel.countDocuments({ post: _id }),
-      }))
-    );
-
-    const result = {};
-    counts.forEach(({ postId, count }) => (result[postId] = count));
-
-    return res.json(result);
+    const postId = req.params.postId;
+    const count = await commentModel.countDocuments({ post: postId });
+    res.json({ count });
   } catch (err) {
-    console.error("❌ Error in getCommentCount:", err);
-    return res.status(500).json({ error: "Failed to fetch comment counts" });
+    console.error("Error fetching comments count:", err);
+    res.status(500).json({ message: "Error fetching comments count" });
   }
 };
 
-export { createComment, getComments, getCommentCount };
+export { createComment, getComments, getCommentsCount };
